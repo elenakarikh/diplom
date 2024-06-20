@@ -1,0 +1,11 @@
+#cloud-config
+
+users:
+  - name: ekarih
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSEVhkxKC52tj49QcFLX92Lz9Iqt6h6X/cP0TIfOCWfeULjnctQxa96iGTszFFXts86ch7fkMPH2tO3mHU/eE7HG3a249gocyXEEfml1JZ41lZrT6e0cFKezaosQYkX+fPiqOwFZfcnioNc3hZ2ohVBm25vlcMCcI3gXfnB7fsKNRk827vhtjic0NLZEhX2hjnzTYWzc4+KiMYpc1fGWWAS4/J4DuShv8IxtqigxBLvzpAbtng5zOJqi6l4h1Wrc0BkvHM93rNavj+yHBU8MLN1L0emTg1cYJZdaHCkXS3GSI8DN3ayARBo8FVNBYpZ7O9mVS5wH+afSlwgbs8q7VT ekarih@ekarih
+
+

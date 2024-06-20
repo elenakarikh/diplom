@@ -1,0 +1,25 @@
+---
+# tasks file for zabbix-agent
+  - name: Установка Zabbix Agent
+    become: true
+    apt:
+        name: zabbix-agent
+        state: present
+
+  - name: Прописываю сервер в conf zabbix-agent
+    replace:
+      path: "/etc/zabbix/zabbix_agentd.conf"
+      regexp: '^Server=127.0.0.1$'
+      replace: 'Server=192.168.3.20'
+
+  - name: Прописываю сервер в conf zabbix-agent
+    replace:
+      path: "/etc/zabbix/zabbix_agentd.conf"
+      regexp: '^ServerActive=127.0.0.1$'
+      replace: 'ServerActive=192.168.3.20'
+
+  - name: Перезапускаем zabbix-agent и добавляем в автозагрузку
+    service:
+      name: zabbix-agent
+      state: restarted
+      enabled: yes

@@ -1,0 +1,3 @@
+---
+# vars file for kibana
+elastic_httphost: 192.168.2.30:9200

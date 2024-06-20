@@ -1,0 +1,61 @@
+---
+- name: zabbix_server
+  hosts: zabbix_server
+  become: true
+  roles:
+    - zabbix-server
+
+- name: elasticsearch
+  hosts: elastic_server
+  become: true
+  roles:
+    - elasticsearch
+
+- name: kibana
+  hosts: kibana_server
+  become: true
+  roles:
+    - kibana
+
+- name: filebeat
+  hosts: web_servers
+  become: true
+  roles:
+    - filebeat
+
+- name: zabbix-agent
+  hosts: web_servers
+  become: true
+  roles:
+    - zabbix-agent
+
+- name: zabbix-agent
+  hosts: elastic_server
+  become: true
+  roles:
+    - zabbix-agent
+
+- name: zabbix-agent
+  hosts: kibana_server
+  become: true
+  roles:
+    - zabbix-agent
+
+- name: zabbix-agent
+  hosts: bastion_server
+  become: true
+  roles:
+    - zabbix-agent
+
+- name: nginx
+  hosts: web_server_1
+  become: true
+  roles:
+    - nginx
+
+- name: nginx2
+  hosts: web_server_2
+  become: true
+  roles:
+    - nginx2
+

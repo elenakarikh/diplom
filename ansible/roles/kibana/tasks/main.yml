@@ -1,0 +1,33 @@
+---
+# tasks file for kibana
+  - name: Установка Kibana
+    become: true
+    apt:
+      deb: "https://mirror.yandex.ru/mirrors/elastic/7/pool/main/k/kibana/kibana-7.17.1-amd64.deb"
+
+  - name: Снимаю коммент host
+    become: true
+    ansible.builtin.lineinfile:
+      path: /etc/kibana/kibana.yml
+      regexp: '^#server\.host: "localhost"$'
+      line: 'server.host: "192.168.3.30"'
+
+  - name: Снимаю коммент port
+    become: true
+    ansible.builtin.lineinfile:
+      path: /etc/kibana/kibana.yml
+      regexp: '^#server\.port: 5601$'
+      line: 'server.port: 5601'
+      
+  - name: Указываю elasticsearch.hosts
+    become: true
+    ansible.builtin.lineinfile:
+      path: /etc/kibana/kibana.yml
+      regexp: '^#elasticsearch\.hosts: \["http:\/\/localhost:9200"\]$'
+      line: 'elasticsearch.hosts: ["http://192.168.2.30:9200"]'
+
+  - name:  Перезапускаем kibana и добавляем в автозагрузку
+    service:
+      name: kibana
+      state: restarted
+      enabled: yes
