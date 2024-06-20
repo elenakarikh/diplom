@@ -7,14 +7,10 @@ terraform {
   }
 }
 
-variable "yandex_cloud_token" {
-  type = string
-}
-
 provider "yandex" {
   token     = var.yandex_cloud_token
-  cloud_id  = "b1gpv6u3h36g7impb908"
-  folder_id = "b1gmlttm66sbucm9033f"
+  cloud_id  = var.cloud_id
+  folder_id = var.folder_id
   zone      = "ru-central1-a"
 }
 
@@ -265,9 +261,6 @@ resource "yandex_compute_instance" "web1" {
     user-data = "${file("./meta.yml")}"
   }
 
-  scheduling_policy {
-    preemptible = true
-  }
 }
 
 # web2
@@ -307,10 +300,6 @@ resource "yandex_compute_instance" "web2" {
 
   metadata = {
     user-data = "${file("./meta.yml")}"
-  }
-
-    scheduling_policy {
-    preemptible = true
   }
 }
 
@@ -354,10 +343,6 @@ resource "yandex_compute_instance" "bastion" {
   metadata = {
     user-data = "${file("./meta.yml")}"
   }
-
-  scheduling_policy {
-    preemptible = true
-  }
 }
 
 # ВМ Zabbix-server
@@ -399,10 +384,6 @@ resource "yandex_compute_instance" "zabbix-server" {
   metadata = {
     user-data = "${file("./meta.yml")}"
   }
-
-  scheduling_policy {
-    preemptible = true
-  }
 }
 
 # ВМ Elasticsearch
@@ -442,10 +423,6 @@ resource "yandex_compute_instance" "elasticsearch" {
 
   metadata = {
     user-data = "${file("./meta.yml")}"
-  }
-
-  scheduling_policy {
-    preemptible = true
   }
 }
 
@@ -488,10 +465,6 @@ resource "yandex_compute_instance" "kibana" {
 
   metadata = {
     user-data = "${file("./meta.yml")}"
-  }
-
-  scheduling_policy {
-    preemptible = true
   }
 }
 
